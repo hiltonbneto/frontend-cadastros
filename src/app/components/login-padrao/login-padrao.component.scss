@@ -1,0 +1,43 @@
+@import "../../../styles/variaveis.scss";
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    h2, h3 {
+      font-family: 'Courier New', Courier, monospace;
+      color: $primary;
+    }
+
+    button {
+      width: 100%;
+      border-radius: 10px;
+      font-weight: 500;
+      border: none;
+      padding: 10px 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      cursor: pointer;
+      &.button-primary {
+        background-color: $primary;
+        color: white;
+      }
+
+      &.button-secondary {
+        background-color: white;
+        color: $primary;
+        border: 1px solid $primary;
+      }
+    }
+  }
+}

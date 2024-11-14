@@ -1,0 +1,10 @@
+@import "../../../styles/variaveis.scss";
+input {
+  border: 1px solid $primary;
+  border-radius: 10px;
+  background-color: white;
+  color: $primary;
+  padding: 12px 0 12px 12px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+}

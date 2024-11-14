@@ -1,0 +1,15 @@
+<app-login-padrao
+  title="Entrar"
+  textoBtnPrimary="Login"
+  textoBtnSecondary="Cadastre-se"
+  (submit)="submit()"
+  (navigate)="navigate()"
+>
+  <form [formGroup]="loginForm">
+
+    <app-text-input formControlName="usuario" placeholder="Usuário" ></app-text-input>
+
+    <app-text-input formControlName="senha" placeholder="Senha" tipo="password" ></app-text-input>
+
+  </form>
+</app-login-padrao>
