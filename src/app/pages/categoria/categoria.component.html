@@ -1,15 +1,21 @@
 <app-header-padrao>
 </app-header-padrao>
-<form [formGroup]="categoriaForm">
+<form [formGroup]="categoriaForm" *ngIf="formVisible">
   <h2 class="titulo">Cadastrar Categoria</h2>
   <app-text-input [mostrar]="categoriaForm.value.id > 0" formControlName="id" placeholder="ID" [desabilitado]="true"></app-text-input>
   <app-text-input formControlName="descricao" placeholder="Descrição" ></app-text-input>
   <button class="button-primary" [disabled]="!categoriaForm.valid" (click)="submit()">Salvar</button>
+  <button class="button-secondary" (click)="formVisible = false">Cancelar</button>
 </form>
 <div class="listagem">
   <div class="titulo-listagem">
-    <h2 class="titulo"> Categorias </h2>
-    <button class="botao-acoes atualizar" (click)="carregarCategorias()">Atualizar</button>
+    <div>
+      <h2 class="titulo"> Categorias </h2>
+    </div>
+    <div>
+      <button class="botao-acoes adicionar" (click)="formVisible = true">Adicionar</button>
+      <button class="botao-acoes atualizar" (click)="carregarCategorias(true)">Carregar</button>
+    </div>
   </div>
   <div class="tabela">
     <table>
@@ -22,7 +28,7 @@
         <td style="width: 80px;" class="titulo">{{categoria.id}}</td>
         <td style="width: 450px;" class="titulo">{{categoria.descricao}}</td>
         <td class="botoes-acoes">
-          <button class="botao-acoes adicionar">Editar</button>
+          <button class="botao-acoes adicionar" (click)="editarCategoria(categoria)">Editar</button>
           <button class="botao-acoes remover" (click)="removerCategoria(categoria.id)">Remover</button>
         </td>
       </tr>

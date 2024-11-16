@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { HeaderPadraoComponent } from '../../components/header-padrao/header-padrao.component';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -32,20 +33,22 @@ export class CategoriaComponent {
 
   categorias: Array<RetornoCategoria> = [];
 
+  formVisible: boolean = false;
+
   constructor(
     private categoriaService: CategoriaService,
     private router: Router,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private formBuilder: FormBuilder
   ) {
     this.categoriaForm = new FormGroup({
       id: new FormControl(''),
       descricao: new FormControl('', [Validators.required]),
     });
-    this.carregarCategorias();
+    this.carregarCategorias(false);
   }
 
   submit() {
-    console.log('teste', this.categoriaForm.value.descricao);
     this.categoriaService
       .salvarCategoria(
         this.categoriaForm.value.id,
@@ -54,29 +57,37 @@ export class CategoriaComponent {
       .subscribe({
         next: (response) => {
           this.toastService.success('Categoria cadastrada com sucesso!');
-          this.carregarCategorias();
+          this.carregarCategorias(false);
+          this.formVisible = false;
         },
         error: (responseError) =>
           this.toastService.error(responseError.error.mensagem),
       });
   }
 
-  carregarCategorias() {
+  carregarCategorias(exibirToast: boolean) {
     this.categoriaService.carregarCategorias().subscribe({
       next: (response) => {
         this.categorias = response;
-        this.toastService.success('Categorias carregadas!');
+        if (exibirToast) {
+          this.toastService.success('Categorias carregadas!');
+        }
       },
       error: (responseError) =>
         this.toastService.error(responseError.error.mensagem),
     });
   }
 
+  editarCategoria(categoria: RetornoCategoria) {
+    this.categoriaForm = this.formBuilder.group(categoria);
+    this.formVisible = true;
+  }
+
   removerCategoria(id: bigint) {
     this.categoriaService.removerCategorias(id).subscribe({
       next: (response) => {
-        console.log(response);
-        // this.toastService.success('Categorias carregadas!');
+        this.toastService.success('Categoria removida com sucesso!');
+        this.carregarCategorias(false);
       },
       error: (responseError) =>
         this.toastService.error(responseError.error.mensagem),

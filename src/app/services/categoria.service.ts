@@ -33,6 +33,6 @@ export class CategoriaService {
       'Authorization': `Bearer ${sessionStorage.getItem('jwt-token')}`,
       'Content-Type': 'application/json'
     });
-    return this.httpClient.delete<RetornoRemoverCategoria>(`${this.baseUrlApi}/categoria&id=${id}`, { headers: httpHeaders });
+    return this.httpClient.delete<RetornoRemoverCategoria>(`${this.baseUrlApi}/categoria/${id}`, { headers: httpHeaders });
   }
 }
