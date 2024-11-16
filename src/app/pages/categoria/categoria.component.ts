@@ -89,8 +89,7 @@ export class CategoriaComponent {
         this.toastService.success('Categoria removida com sucesso!');
         this.carregarCategorias(false);
       },
-      error: (responseError) =>
-        this.toastService.error(responseError.error.mensagem),
+      error: (responseError) => this.toastService.error(responseError.error.mensagem),
     });
   }
 }

@@ -1,38 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RetornoCategoria } from '../tipos/retorno-categoria.type';
+import { RetornoProduto } from '../tipos/retorno-produto.type';
 import { RetornoRemover } from '../tipos/retorno-remover.type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
+export class ProdutoService {
 
   baseUrlApi: string = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) {}
 
-  salvarCategoria(id: string, descricao: string) {
+  salvarProduto(id: string, descricao: string, categoria: RetornoProduto) {
     const httpHeaders = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('jwt-token')}`,
       'Content-Type': 'application/json'
     });
-    return this.httpClient.post<RetornoCategoria>(`${this.baseUrlApi}/categoria`, { id, descricao }, { headers: httpHeaders });
+    return this.httpClient.post<RetornoProduto>(`${this.baseUrlApi}/produto`, { id, descricao, categoria }, { headers: httpHeaders });
   }
 
-  carregarCategorias() {
+  carregarProdutos() {
     const httpHeaders = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('jwt-token')}`,
       'Content-Type': 'application/json'
     });
-    return this.httpClient.get<RetornoCategoria[]>(`${this.baseUrlApi}/categoria`, { headers: httpHeaders });
+    return this.httpClient.get<RetornoProduto[]>(`${this.baseUrlApi}/produto`, { headers: httpHeaders });
   }
 
-  removerCategorias(id: bigint) {
+  removerProdutos(id: bigint) {
     const httpHeaders = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('jwt-token')}`,
       'Content-Type': 'application/json'
     });
-    return this.httpClient.delete<RetornoRemover>(`${this.baseUrlApi}/categoria/${id}`, { headers: httpHeaders });
+    return this.httpClient.delete<RetornoRemover>(`${this.baseUrlApi}/produto/${id}`, { headers: httpHeaders });
   }
 }

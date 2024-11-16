@@ -1,0 +1,102 @@
+@import "../../../styles/variaveis.scss";
+
+.listagem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 400px;
+}
+
+.titulo {
+  font-family: "Courier New", Courier, monospace;
+  color: $primary;
+}
+
+.titulo-listagem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid $primary;
+  margin-bottom: 15px;
+}
+
+.titulo-tabela {
+  font-family: "Courier New", Courier, monospace;
+  color: $primary;
+  font-weight: bold;
+}
+
+.botoes-acoes {
+  display: flex;
+  flex-direction: row ;
+}
+
+.botao-acoes {
+  height: 35px;
+  border-radius: 10px;
+  font-weight: 500;
+  border: none;
+  padding: 10px 10px;
+  margin-right: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &.remover {
+    background-color: red;
+    color: white;
+  }
+
+  &.adicionar {
+    background-color: $primary;
+    color: white;
+  }
+
+  &.atualizar {
+    background-color: white;
+    color: $primary;
+    border: 1px solid $primary;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 400px;
+  gap: 25px;
+
+  h2 {
+    font-family: "Courier New", Courier, monospace;
+    color: $primary;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 500;
+    border: none;
+    padding: 10px 0;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    &.button-primary {
+      background-color: $primary;
+      color: white;
+    }
+
+    &.button-secondary {
+      background-color: white;
+      color: $primary;
+      border: 1px solid $primary;
+    }
+  }
+}

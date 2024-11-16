@@ -1,4 +1,45 @@
 <app-header-padrao>
-  <p>produto works!</p>
 </app-header-padrao>
+<form [formGroup]="produtoForm" *ngIf="formVisible">
+  <h2 class="titulo">Cadastrar Produto</h2>
+  <app-text-input [mostrar]="produtoForm.value.id > 0" formControlName="id" placeholder="ID" [desabilitado]="true"></app-text-input>
+  <app-text-input formControlName="descricao" placeholder="Descrição" ></app-text-input>
+  <app-text-input placeholder="Categoria" (input)="buscarCategorias()"></app-text-input>
+  <div *ngIf="categoriasEncontradas.length > 0">
+    <div *ngFor="let categoria of categoriasEncontradas">
+      <div (click)="selecionarCategoria(categoria)">{{ categoria.descricao }}</div>
+    </div>
+  </div>
+  {{categoriaBusca}}
+  <button class="button-primary" [disabled]="!produtoForm.valid" (click)="submit()">Salvar</button>
+  <button class="button-secondary" (click)="formVisible = false">Cancelar</button>
+</form>
+<div class="listagem">
+  <div class="titulo-listagem">
+    <div>
+      <h2 class="titulo"> Produtos </h2>
+    </div>
+    <div>
+      <button class="botao-acoes adicionar" (click)="formVisible = true">Adicionar</button>
+      <button class="botao-acoes atualizar" (click)="carregarProdutos(true)">Carregar</button>
+    </div>
+  </div>
+  <div class="tabela">
+    <table>
+      <tr>
+        <td style="width: 80px;" class="titulo-tabela">ID</td>
+        <td style="width: 450px;" class="titulo-tabela">Descrição</td>
+        <td colspan="1" class="titulo-tabela">Ações</td>
+      </tr>
+      <tr *ngFor="let produto of produtos">
+        <td style="width: 80px;" class="titulo">{{produto.id}}</td>
+        <td style="width: 450px;" class="titulo">{{produto.descricao}}</td>
+        <td class="botoes-acoes">
+          <button class="botao-acoes adicionar" (click)="editarProduto(produto)">Editar</button>
+          <button class="botao-acoes remover" (click)="removerProduto(produto.id)">Remover</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 
