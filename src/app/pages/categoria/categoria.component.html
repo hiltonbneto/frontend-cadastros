@@ -1,4 +1,32 @@
 <app-header-padrao>
-  <p>categoria works!</p>
 </app-header-padrao>
+<form [formGroup]="categoriaForm">
+  <h2 class="titulo">Cadastrar Categoria</h2>
+  <app-text-input [mostrar]="categoriaForm.value.id > 0" formControlName="id" placeholder="ID" [desabilitado]="true"></app-text-input>
+  <app-text-input formControlName="descricao" placeholder="Descrição" ></app-text-input>
+  <button class="button-primary" [disabled]="!categoriaForm.valid" (click)="submit()">Salvar</button>
+</form>
+<div class="listagem">
+  <div class="titulo-listagem">
+    <h2 class="titulo"> Categorias </h2>
+    <button class="botao-acoes atualizar" (click)="carregarCategorias()">Atualizar</button>
+  </div>
+  <div class="tabela">
+    <table>
+      <tr>
+        <td style="width: 80px;" class="titulo-tabela">ID</td>
+        <td style="width: 450px;" class="titulo-tabela">Descrição</td>
+        <td colspan="1" class="titulo-tabela">Ações</td>
+      </tr>
+      <tr *ngFor="let categoria of categorias">
+        <td style="width: 80px;" class="titulo">{{categoria.id}}</td>
+        <td style="width: 450px;" class="titulo">{{categoria.descricao}}</td>
+        <td class="botoes-acoes">
+          <button class="botao-acoes adicionar">Editar</button>
+          <button class="botao-acoes remover" (click)="removerCategoria(categoria.id)">Remover</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 

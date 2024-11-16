@@ -1,1 +1,1 @@
-<input [type]="tipo" [value]="value" [placeholder]="placeholder" (input)="onInput($event)" />
+<input [type]="tipo" [value]="value" *ngIf="mostrar" [placeholder]="placeholder" [disabled]="desabilitado" (input)="onInput($event)" />

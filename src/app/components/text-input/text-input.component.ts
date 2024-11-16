@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -10,7 +11,7 @@ type TiposInput = 'text' | 'password';
 @Component({
   selector: 'app-text-input',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -25,6 +26,10 @@ export class TextInputComponent implements ControlValueAccessor {
   @Input() tipo: TiposInput = 'text';
 
   @Input() placeholder: string = '';
+
+  @Input() desabilitado: boolean = false;
+
+  @Input() mostrar: boolean = true;
 
   value: string = '';
 
