@@ -1,0 +1,47 @@
+@import "../../../styles/variaveis.scss";
+
+nav {
+  border: 1px solid white;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    border-radius: 10px;
+    font-weight: 500;
+    border: none;
+    padding: 10px 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+    color: $primary;
+  }
+}
+
+.navbar {
+  background-color: $primary;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  padding: 10px 20px;
+}
+
+.navbar nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar nav ul li {
+  margin: 0 10px;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}

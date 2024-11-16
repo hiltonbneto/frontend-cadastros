@@ -41,7 +41,7 @@ export class LoginComponent {
           this.toastService.success('Login realizado com sucesso!');
           this.toCategoria();
         },
-        error: () => this.toastService.error('Usuários e/ou senha incorreto.'),
+        error: (responseError) => this.toastService.error(responseError.error.mensagem),
       });
   }
 
