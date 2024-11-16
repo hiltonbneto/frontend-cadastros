@@ -14,8 +14,9 @@ main {
 
     gap: 25px;
 
-    h2, h3 {
-      font-family: 'Courier New', Courier, monospace;
+    h2,
+    h3 {
+      font-family: "Courier New", Courier, monospace;
       color: $primary;
     }
 
@@ -25,9 +26,14 @@ main {
       font-weight: 500;
       border: none;
       padding: 10px 0;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: "Courier New", Courier, monospace;
       font-weight: bold;
       cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+
       &.button-primary {
         background-color: $primary;
         color: white;

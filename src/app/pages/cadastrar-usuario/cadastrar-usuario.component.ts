@@ -12,22 +12,23 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-cadastrar-usuario',
   standalone: true,
   providers: [LoginService],
   imports: [LoginPadraoComponent, ReactiveFormsModule, TextInputComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './cadastrar-usuario.component.html',
+  styleUrl: './cadastrar-usuario.component.scss',
 })
-export class LoginComponent {
-  loginForm!: FormGroup;
+export class CadastrarUsuarioComponent {
+  cadastrarUsuarioForm!: FormGroup;
 
   constructor(
     private router: Router,
     private loginService: LoginService,
     private toastService: ToastrService
   ) {
-    this.loginForm = new FormGroup({
+    this.cadastrarUsuarioForm = new FormGroup({
+      nome: new FormControl('', [Validators.required]),
       login: new FormControl('', [Validators.required]),
       senha: new FormControl('', [Validators.required]),
     });
@@ -35,21 +36,23 @@ export class LoginComponent {
 
   submit() {
     this.loginService
-      .login(this.loginForm.value.login, this.loginForm.value.senha)
+      .cadastrarUsuario(
+        this.cadastrarUsuarioForm.value.nome,
+        this.cadastrarUsuarioForm.value.login,
+        this.cadastrarUsuarioForm.value.senha
+      )
       .subscribe({
         next: () => {
-          this.toastService.success('Login realizado com sucesso!');
-          this.toCategoria();
+          this.toastService.success('Usuário cadastrado com sucesso!');
+          this.navigate()
         },
-        error: () => this.toastService.error('Usuários e/ou senha incorreto.'),
+        error: (responseError) => {
+          this.toastService.error(responseError.error.mensagem);
+        },
       });
   }
 
-  toCategoria() {
-    this.router.navigate(['/categoria']);
-  }
-
   navigate() {
-    this.router.navigate(['/cadastrar-usuario']);
+    this.router.navigate(['/login']);
   }
 }

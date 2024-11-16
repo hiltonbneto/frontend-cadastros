@@ -4,10 +4,11 @@
   textoBtnSecondary="Cadastre-se"
   (submit)="submit()"
   (navigate)="navigate()"
+  [desabilitaBtnPrimary]="!loginForm.valid"
 >
   <form [formGroup]="loginForm">
 
-    <app-text-input formControlName="usuario" placeholder="Usuário" ></app-text-input>
+    <app-text-input formControlName="login" placeholder="Usuário" ></app-text-input>
 
     <app-text-input formControlName="senha" placeholder="Senha" tipo="password" ></app-text-input>
 

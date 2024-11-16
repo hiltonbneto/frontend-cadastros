@@ -11,6 +11,7 @@ export class LoginPadraoComponent {
   @Input() title: String = "";
   @Input() textoBtnPrimary: String = "";
   @Input() textoBtnSecondary: String = "";
+  @Input() desabilitaBtnPrimary: boolean = true;
 
   @Output("submit") onSubmit = new EventEmitter();
 

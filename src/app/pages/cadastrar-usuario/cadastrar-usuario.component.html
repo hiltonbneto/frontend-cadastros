@@ -1,0 +1,18 @@
+<app-login-padrao
+  title="Cadastrar usuário"
+  textoBtnPrimary="Cadastrar"
+  textoBtnSecondary="Entrar com usuario e senha"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [desabilitaBtnPrimary]="!cadastrarUsuarioForm.valid"
+>
+  <form [formGroup]="cadastrarUsuarioForm">
+
+    <app-text-input formControlName="nome" placeholder="Nome" ></app-text-input>
+
+    <app-text-input formControlName="login" placeholder="Usuário" ></app-text-input>
+
+    <app-text-input formControlName="senha" placeholder="Senha" tipo="password" ></app-text-input>
+
+  </form>
+</app-login-padrao>
