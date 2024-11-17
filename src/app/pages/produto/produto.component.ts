@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HeaderPadraoComponent } from '../../components/header-padrao/header-padrao.component';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -24,11 +25,12 @@ import { CategoriaService } from '../../services/categoria.service';
     ReactiveFormsModule,
     TextInputComponent,
     CommonModule,
+    FormsModule
   ],
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.scss',
 })
-export class ProdutoComponent {
+export class ProdutoComponent  {
   @Input() desabilitaBtnPrimary: boolean = true;
 
   produtoForm!: FormGroup;
@@ -37,7 +39,7 @@ export class ProdutoComponent {
 
   categoriasEncontradas: Array<RetornoCategoria> = [];
 
-  categoriaBusca: string = '';
+  categoriaSelecionada!: RetornoCategoria;
 
   formVisible: boolean = false;
 
@@ -54,15 +56,7 @@ export class ProdutoComponent {
       categoria: new FormControl(null, [Validators.required]),
     });
     this.carregarProdutos(false);
-  }
-
-  selecionarCategoria(categoria: RetornoCategoria) {
-    this.produtoForm = this.formBuilder.group({
-      id: this.produtoForm.value.id,
-      descricao: this.produtoForm.value.descricao,
-      categoria: categoria,
-    });
-    this.categoriasEncontradas = []
+    this.buscarCategorias()
   }
 
   buscarCategorias() {
@@ -124,8 +118,12 @@ export class ProdutoComponent {
     });
   }
 
-  editarProduto(categoria: RetornoProduto) {
-    this.produtoForm = this.formBuilder.group(categoria);
+  editarProduto(produto: RetornoProduto) {
+    this.produtoForm = this.formBuilder.group({
+      id: produto.id,
+      descricao: produto.descricao,
+      categoria: produto.categoria,
+    });
     this.formVisible = true;
   }
 

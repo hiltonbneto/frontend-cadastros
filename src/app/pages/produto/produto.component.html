@@ -4,13 +4,12 @@
   <h2 class="titulo">Cadastrar Produto</h2>
   <app-text-input [mostrar]="produtoForm.value.id > 0" formControlName="id" placeholder="ID" [desabilitado]="true"></app-text-input>
   <app-text-input formControlName="descricao" placeholder="Descrição" ></app-text-input>
-  <app-text-input placeholder="Categoria" (input)="buscarCategorias()"></app-text-input>
-  <div *ngIf="categoriasEncontradas.length > 0">
-    <div *ngFor="let categoria of categoriasEncontradas">
-      <div (click)="selecionarCategoria(categoria)">{{ categoria.descricao }}</div>
-    </div>
+  <div>
+    <label>Categoria</label>
+    <select formControlName="categoria">
+      <option *ngFor="let categoria of categoriasEncontradas" [ngValue]="categoria">{{ categoria.descricao }}</option>
+    </select>
   </div>
-  {{categoriaBusca}}
   <button class="button-primary" [disabled]="!produtoForm.valid" (click)="submit()">Salvar</button>
   <button class="button-secondary" (click)="formVisible = false">Cancelar</button>
 </form>
@@ -29,11 +28,13 @@
       <tr>
         <td style="width: 80px;" class="titulo-tabela">ID</td>
         <td style="width: 450px;" class="titulo-tabela">Descrição</td>
+        <td style="width: 450px;" class="titulo-tabela">Categoria</td>
         <td colspan="1" class="titulo-tabela">Ações</td>
       </tr>
       <tr *ngFor="let produto of produtos">
         <td style="width: 80px;" class="titulo">{{produto.id}}</td>
         <td style="width: 450px;" class="titulo">{{produto.descricao}}</td>
+        <td style="width: 450px;" class="titulo">{{produto.categoria.descricao}}</td>
         <td class="botoes-acoes">
           <button class="botao-acoes adicionar" (click)="editarProduto(produto)">Editar</button>
           <button class="botao-acoes remover" (click)="removerProduto(produto.id)">Remover</button>

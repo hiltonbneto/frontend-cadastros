@@ -28,7 +28,7 @@
 
 .botoes-acoes {
   display: flex;
-  flex-direction: row ;
+  flex-direction: row;
 }
 
 .botao-acoes {
@@ -72,6 +72,21 @@ form {
   h2 {
     font-family: "Courier New", Courier, monospace;
     color: $primary;
+  }
+
+  label {
+    font-family: "Courier New", Courier, monospace;
+    color: $primary;
+  }
+
+  select {
+    border: 1px solid $primary;
+    border-radius: 10px;
+    background-color: white;
+    color: $primary;
+    padding: 12px 0 12px 12px;
+    width: 100%;
+    font-family: "Courier New", Courier, monospace;
   }
 
   button {
