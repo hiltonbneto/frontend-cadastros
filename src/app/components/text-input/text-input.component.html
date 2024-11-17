@@ -1,1 +1,2 @@
+<label *ngIf="mostrar">{{placeholder}}</label>
 <input [type]="tipo" [value]="value" *ngIf="mostrar" [placeholder]="placeholder" [disabled]="desabilitado" (input)="onInput($event)" />

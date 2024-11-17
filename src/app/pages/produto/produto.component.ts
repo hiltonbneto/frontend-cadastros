@@ -50,13 +50,13 @@ export class ProdutoComponent  {
     private toastService: ToastrService,
     private formBuilder: FormBuilder
   ) {
+    this.buscarCategorias()
     this.produtoForm = new FormGroup({
       id: new FormControl(''),
       descricao: new FormControl('', [Validators.required]),
-      categoria: new FormControl(null, [Validators.required]),
+      categoria: new FormControl({}, [Validators.required]),
     });
     this.carregarProdutos(false);
-    this.buscarCategorias()
   }
 
   buscarCategorias() {
@@ -119,12 +119,12 @@ export class ProdutoComponent  {
   }
 
   editarProduto(produto: RetornoProduto) {
-    this.produtoForm = this.formBuilder.group({
-      id: produto.id,
-      descricao: produto.descricao,
-      categoria: produto.categoria,
-    });
+    this.produtoForm = this.formBuilder.group(produto);
     this.formVisible = true;
+  }
+
+  validaSelecionado(obj1: any, obj2: any): boolean {
+    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
   }
 
   removerProduto(id: bigint) {
@@ -134,7 +134,7 @@ export class ProdutoComponent  {
         this.carregarProdutos(false);
       },
       error: (responseError) =>
-        this.toastService.error(responseError.error.mensagem),
+        this.toastService.error(responseError.error?.mensagem),
     });
   }
 }

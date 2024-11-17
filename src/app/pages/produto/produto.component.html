@@ -6,7 +6,7 @@
   <app-text-input formControlName="descricao" placeholder="Descrição" ></app-text-input>
   <div>
     <label>Categoria</label>
-    <select formControlName="categoria">
+    <select formControlName="categoria" [compareWith]="validaSelecionado">
       <option *ngFor="let categoria of categoriasEncontradas" [ngValue]="categoria">{{ categoria.descricao }}</option>
     </select>
   </div>
