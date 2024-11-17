@@ -81,6 +81,7 @@ export class ProdutoComponent  {
           this.toastService.success('Produto cadastrado com sucesso!');
           this.carregarProdutos(false);
           this.formVisible = false;
+          this.produtoForm.reset()
         },
         error: (responseError) =>
           this.toastService.error(responseError.error.mensagem),
@@ -99,6 +100,7 @@ export class ProdutoComponent  {
           this.toastService.success('Produto cadastrado com sucesso!');
           this.carregarProdutos(false);
           this.formVisible = false;
+          this.produtoForm.reset()
         },
         error: (responseError) =>
           this.toastService.error(responseError.error.mensagem),

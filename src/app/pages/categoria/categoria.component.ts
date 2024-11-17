@@ -59,6 +59,7 @@ export class CategoriaComponent {
           this.toastService.success('Categoria cadastrada com sucesso!');
           this.carregarCategorias(false);
           this.formVisible = false;
+          this.categoriaForm.reset();
         },
         error: (responseError) =>
           this.toastService.error(responseError.error.mensagem),
